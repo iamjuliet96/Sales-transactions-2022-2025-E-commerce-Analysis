@@ -1,0 +1,32 @@
+1.Returned Lines = 
+CALCULATE (
+    COUNTROWS ( sales_clean_v ),
+    sales_clean_v[ReturnFlag] = "1",
+    sales_clean_v[OrderStatus] <> "Cancelled"
+)
+
+2.Returned Revenue % = 
+DIVIDE (
+    [Returned Revenue],
+    CALCULATE ( [Returned Revenue], ALLSELECTED ( sales_clean_v[ReturnReason] ) )
+)
+
+3.Margin % = DIVIDE([Net Profit], [Net Revenue])
+
+4.Net Profit = CALCULATE(SUM(sales_clean_v[Profitreported]),
+    NOT sales_clean_v[OrderStatus] IN {"Cancelled","Returned"})
+
+5.Net Revenue = CALCULATE(SUM(sales_clean_v[SalesAmount]),
+    NOT sales_clean_v[OrderStatus] IN {"Cancelled","Returned"})
+
+6.Return Rate = DIVIDE(
+    CALCULATE(COUNTROWS(sales_clean_v), sales_clean_v[ReturnFlag]="1", sales_clean_v[OrderStatus]<>"Cancelled"),
+    CALCULATE(COUNTROWS(sales_clean_v), sales_clean_v[OrderStatus]<>"Cancelled"))
+
+7.Returned Revenue = 
+CALCULATE (
+    SUM ( sales_clean_v[SalesAmount] ),
+    sales_clean_v[ReturnFlag] = "1",
+    sales_clean_v[OrderStatus] <> "Cancelled"
+)
+
