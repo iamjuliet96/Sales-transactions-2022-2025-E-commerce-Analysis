@@ -92,7 +92,7 @@ Delivery time and shipping method has essentially no clear or consistent relatio
 - Discount and delivery findings are observational associations across transactions, not casual or controlled tests results.
   
 ### How to Reproduce
-Download the dataset from Kaggle (link above).
+Download the dataset from link above.
 Run the SQL scripts in `/sql` in order (01 → 05) against a SQL Server database.
-Open `powerbi/olist\_dashboard.pbix` in Power BI Desktop, connect it to your database, and refresh.
+Open the google drive above in Power BI Desktop, connect it to your database, and refresh.
 
